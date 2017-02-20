@@ -1,0 +1,380 @@
+
+NOTA:
+	Este archivo contiene un volcado de enlaces, apuntes y comentarios sin orden ni relación entre sí tomados a lo largo del proyecto.
+	NO tiene finalidad ninguna, solo está aquí por fines conservativos.
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================================================
+======================================================================================================
+======================================================================================================
+
+
+https://pixelvision8.itch.io/game-creator
+
+https://github.com/talecrafter/GameJamFramework
+
+Graphics/Helpers -> Colección de métodos para facilitar el uso de renderizar un mesh arbitrario (sprite, particulas, tilemap, texto, ...)
+
+Crear sistema con una API (pico8?) cuyos algoritmos se encarguen de realizar el culling y animación de sprites, tiles, etc y que hagan uso de los Helpers
+
+
+TileMap/Renderer/*
+	JuFramework_Unity\TileMap\Renderer\Tiled\TileMapTiledRenderer.cs
+	JuFramework_Unity\TileMap\Renderer\Tiled\Editor\TileMapTiledRendererEditor.cs
+	JuFramework\TileMap\Renderer\TileMapMeshLayer.cs
+	JuFramework\TileMap\Renderer\TileMapMeshGenerator.cs
+	JuFramework\TileMap\Renderer\TileMapMeshChunkGenerator.cs
+
+Simple camera culling (no draw calls if mesh its outside bounds)
+
+tilemap optimize (mesh?)
+tilemap animation
+
+-----------------------------
+
+> Clear
+> Sprite (textura atlas)
+> Texto (textura bitmap)
+> Mapa (textura tileset)
+> Primitivas (lineas, circulos, cuadrados)
+
+! Layers (shader Z pos?) (Transform2D z-position system ?)
+! Clip (shader?)
+! Palettes (shader?)
+! Blendmodes [Mix, Add, Sub, Mod] (shader?)
+! RenderTextures (ej: light layer + blending) + Pixel get/set (?)
+
+-----------------------------
+
+Aseprite loader / other -> data (anim) -> renderer
+
+	tag -> frame inicio + frame final + tipo reproducción
+	frame -> duración + source rect + rotated
+
+Texto !
+
+---------------------------------
+
+Code architecture
+	http://gameprogrammingpatterns.com/contents.html
+	https://en.wikipedia.org/wiki/Template:Design_Patterns_patterns
+	https://en.wikipedia.org/wiki/Category:Programming_principles
+
+Entity/Component/Systems
+	integrar con GameObjects de Unity (renderers)
+
+Tweens/Easings (int/float/vector/quaternion/color/rectangle)
+Event emitter, Scheduler, coroutines, promises, timers
+Behaviour trees
+Modular level design
+Blender 3d lowpoly
+Noise generation
+Procedural generation
+Audio
+Pixel perfect
+Verlet vs euler
+Splines
+Steering behaviours
+Pathfinding
+Spatialhash
+Particles
+
+NodeJS server
+
+======================================================================================================
+======================================================================================================
+======================================================================================================
+
+https://stackoverflow.com/questions/36438710/c-sharp-unity-quick-copy-between-different-managed-array-types
+https://forum.unity3d.com/threads/fast-memory-copy-between-arrays.337691/
+
+---------------
+
+function Approach(start, end, shift)
+{
+	if (start < end)
+    		return min(start + shift, end); 
+	else
+    		return max(start - shift, end);
+}
+
+------------------
+
+usar internal para cosas publicas pero que no deban llamarse desde fuera de la DLL
+
+------------------
+
+lerp(start,end,position); // usar bias en position
+
+http://www.gmlscripts.com/script/bias
+
+//  Returns the given value with a bias function applied to it.
+//
+//      b           bais, real
+//      x           value, real
+//
+//  If x varies over the [0,1] interval, then the result also
+//  varies over that interval. The 0 and 1 endpoints of the
+//  interval are mapped onto themselves. Other values are shifted
+//  upward toward 1 if b is greater than 0.5, and shifted 
+//  downward toward 0 if b is less than 0.5.
+//
+bias(b, x)
+{
+    return x / ((1 / b - 2) * (1 - x) + 1);
+}
+
+---------------------------------------
+
+private static void Measure(string name, Action action)
+{
+    var watch = System.Diagnostics.Stopwatch.StartNew();
+
+    action();
+
+    watch.Stop();
+    var elapsedMs = watch.ElapsedMilliseconds;
+
+    Console.WriteLine("[{0}] Avg time: {1}", name, (float) elapsedMs / RepeatCount);
+}
+
+------------------------------------
+
+https://docs.yoyogames.com/source/dadiospice/002_reference/mouse,%20keyboard%20and%20other%20controls/virtual%20keys/virtual_key_add.html
+
+---------------------------------------
+
+http://www.moonsharp.org/
+
+--------------------------------------
+
+https://gist.github.com/JoachimHolmer/5743d0ad1c09b64cb548
+
+======================================================================================================
+======================================================================================================
+======================================================================================================
+
+dropear parte gráfica
+empezar proyecto de nuevo y:
+	continuar orientado a libreria de apoyo unity (seguir implementando las cosas como hasta ahora de todas formas, con namespaces
+	propios y funcionalidad propia en métodos propios, y cuando se utilice algo externo como pueden ser métodos de colisiones, wrapear
+	en métodos abstractos e implementar en JuFramework_Unity por ejemplo)
+
+-------------
+
+https://docs.unity3d.com/ScriptReference/MaterialPropertyBlock.html
+https://docs.unity3d.com/ScriptReference/Graphics.DrawMesh.html
+https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnPostRender.html
+https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnRenderImage.html
+
+Trello:
+	Trello board
+	Examples
+	API Doc
+	Servidor / Lobby (NodeJS)
+	<revisar listado de abajo>
+
+http://dev.theomader.com/transform-bounding-boxes/
+https://stackoverflow.com/questions/6053522/how-to-recalculate-axis-aligned-bounding-box-after-translate-rotate
+
+Models.cs
+	https://github.com/raysan5/raylib/blob/17f09cb03484a408cdd50a3d2e4d6604bb1f4c70/src/models.c#L364
+Physics2D.cs
+Physics3D.cs
+
+Revisar API
+	http://www.raylib.com/cheatsheet.html
+
+Renombrar código, variables locales, etc (sobre todo en math)
+Limpiar método "Quat(Mat3)"
+"SetPass" hardcoded (Texture drawing methods in GraphicsExtension)
+"new X"
+Destroy() in UnityTexture & UnityMaterial (hideFlags ?)
+	http://answers.unity3d.com/questions/830973/c-calling-destroy-in-a-custom-class-destructor.html
+Optimize casting
+	https://stackoverflow.com/questions/40845580/in-c-sharp-cast-array-without-making-a-copy
+	https://msdn.microsoft.com/en-us/library/system.bitconverter(v=vs.110).aspx
+	https://msdn.microsoft.com/en-us/library/28k1s2k6.aspx
+	http://answers.unity3d.com/questions/804103/how-to-enable-unsafe-and-use-pointers.html
+
+Revisar TO-DOs
+
+---
+
+- DLL project
+- Core
+- Time
+- Math
+- Random
+- Logging
+- Input
+- Rendering
+- Screen
+- Transforms (Scene Graph)
+- Camera
+- Texture
+- Mesh
+- Shaders
+- Materials
+- Resource loader
+
+= Mesh generators (+ naive & delaunay triangulation)
+* Physics collisions
+* Graphics Batcher
+* Sprites (+ animations)
+* Fonts
+* Audio
+* Particles
+* Cubemaps
+* 2D Parallax
+* Tilemaps
+
+* Tweens/Easings (int/float/vector/quaternion/color/rectangle)
+* Event emitter, Scheduler, coroutines, promises, timers
+* Scenes
+* Content managers (per scene & global) (+ asset loading/unloading)
+* IoC Container
+* Entity/Component/Systems
+* Renderer & Renderable components + optimization (sorting & layers 2D)
+* Unity Level editor integration
+
+* UI (IMGUI)
+* SpatialHash
+* Read/Write Json, XML, SQLite, Registry (UserPrefs) "Storage"
+* Procedural Generators (noises, etc)
+* Mesh animation (bones? animations? pose interpolations)
+* Verlet physics
+* Pathfinding
+* Steering behaviours
+* AI (FSM, Behavior Trees, GOAP, Utility)
+* Scene transitions
+* Console (internal) (+ physics debug, asset tracker, component, inspector, profiler, commands)
+* Level editor (internal)
+* Threading
+* Networking (TCP/IP, Ajax HTTP Requests, Websockets)
+* Social integration
+* Localisation
+* Advanced Rendering:
+	Blending (Additive & Alpha)
+	RenderTexture https://forum.unity.com/threads/using-graphics-drawmeshnow-with-a-gl-loadortho-is-this-a-valid-method.330707/
+	Post processing
+		(Arreglar SSAO & DOF)
+	Lights
+	Shadows
+	Deferred lighting
+
+---
+
+fovX fovY
+Debug.isDebugBuild (environment)
+Debug.Break
+Input touch
+Application.genuineCheckAvailable
+Application.genuine
+Application.ExternalCall
+Application.ExternalEval
+Application.LogCallback
+
+https://docs.unity3d.com/Manual/ObliqueFrustum.html
+https://docs.unity3d.com/Manual/DollyZoom.html
+https://docs.unity3d.com/Manual/FrustumSizeAtDistance.html
+http://www.iquilezles.org/www/articles/frustum/frustum.htm
+https://en.wikipedia.org/wiki/Hidden_surface_determination
+
+https://docs.unity3d.com/ScriptReference/Graphics.CopyTexture.html
+
+Unity render pipeline
+	https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html
+	https://docs.unity3d.com/Manual/SL-SurfaceShaderLighting.html
+
+	http://malideveloper.arm.com/downloads/DeveloperGuides/arm_guide_for_unity_developers_optimizing_mobile_gaming_graphics_100140_0300_00_en.pdf
+
+	http://blommouth.com/temp/intro/unity/Assets/Marmoset/Skyshop/Script/Sky.cs
+
+	https://simonetti.media.mit.edu/dev/projects/tidmarsh-unity/repository/revisions/39af4dfc1001/show/Assets/Time%20of%20Day/Assets/Scripts
+
+Clipboard (parece que solo funciona DENTRO de unity, no sirve):
+	public static string Clipboard {
+		get { return GUIUtility.systemCopyBuffer; }
+		set { GUIUtility.systemCopyBuffer = value; } }
+
+	Type T = typeof(GUIUtility);
+	PropertyInfo systemCopyBufferProperty = T.GetProperty("systemCopyBuffer", BindingFlags.Static | BindingFlags.NonPublic);
+	systemCopyBufferProperty.SetValue(null, "bla bla", null);
+
+	TextEditor te = new TextEditor();
+	//te.content = new GUIContent("bla bla");
+	te.text = "blah blah";
+	te.SelectAll();
+	te.Copy();
+
+Pixel Set / Get (color) -> RENDER TEXTURE
+Clear Depth / Color -> RENDER TEXTURE
+http://pico-8.wikia.com/wiki/Clip
+
+https://github.com/Philip-Trettner/GlmSharp/tree/master/GlmSharp/GlmSharp
+
+https://github.com/prime31/Nez/blob/master/README.md
+
+http://www.raylib.com/cheatsheet.html
+
+https://github.com/andoowhy/EgoCS
+
+https://marketplace.visualstudio.com/items?itemName=AvinabMalla.ConfuserExforVisualStudio2015
+
+https://github.com/EdyJ/blender-to-unity3d-importer
+
+http://thomasmountainborn.com/2016/06/10/sending-audio-directly-to-a-speaker-in-unity/
+
+https://www.assetstore.unity3d.com/en/#!/content/15277
+
+3D Game Engine Design: A Practical Approach to Real-Time Computer Graphics - David H. Eberly
+https://books.google.es/books?id=TnwZBwAAQBAJ&pg=PA644&lpg=PA644&dq=SqrDistance&source=bl&ots=cTj7hJHBsU&sig=FkK0VSiEshHZtiSm_8-i_Ee6jQ4&hl=es&sa=X&ved=0ahUKEwiP7e2kw_7QAhWDPhQKHZU3CsgQ6AEISTAG#v=onepage&q&f=false
+
+WORKFLOW 2D
+	PyxelEdit (tilesets)
+	Tiled (tilemaps, level design)
+	Aseprite (sprites, animation)
+	Unity (shaders, coding)
+
+WORKFLOW 3D
+	Blender (modeling, sculpting, retopology, uv wrapping, animation, lighmapping)
+	Substance Painter & Photoshop/Gimp/Other (texturing)
+	Unity (shaders, coding, level design)
+
+Documentación métodos DLL
+	https://msdn.microsoft.com/en-us/library/aa288481(v=vs.71).aspx
+	https://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.140).aspx
+	https://github.com/Facepunch/GithubDocGen
+
+---
+
+Cosas a configurar con un nuevo proyecto:
+	+ Editor Settings: 		Asset Serialization = Force Text
+	+ Editor Settings: 		Default Behaviour Mode (2D <-> 3D)
+	+ Editor Settings: 		Additional extensions
+	+ Player Settings: 		Company Name | Product Name | Icon
+	+ Player Settings: 		OpenGL Core | Resolution | Player
+	+ Time Settings: 		Fixed Timestep = 10 (Disable Physics)
+	+ Copiar InputManager.asset
+	+ Copiar Shaders a una carpeta Resources
+
+visible in background = true (not false)
+spu skinning = true (not false)
+shadow cascades = 1 (not 4)
+pixel light count = 99 (not 4)
+color space = LINEAR [!]
+antialiasing = x4 (fantastic)
+incluir shaders en "always included shaders" ? (o bien todos a /Resources/)
+
+Ventajas: Portabilidad, Profiler, ShaderLab, Documentación, Comunidad

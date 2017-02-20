@@ -1,0 +1,35 @@
+
+Frame debugger -> revisar llamadas y parametros shaders
+
+https://docs.unity3d.com/ScriptReference/GL.html
+depthBuffer, stencilBuffer, faceCulling, blending
+
+---
+
+http://catlikecoding.com/unity/tutorials/rendering/part-4/
+
+https://docs.unity3d.com/ScriptReference/Material.html
+https://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html
+https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html
+https://docs.unity3d.com/Manual/SL-Shader.html
+https://docs.unity3d.com/Manual/SL-Material.html
+https://docs.unity3d.com/Manual/SL-SurfaceShaders.html
+https://docs.unity3d.com/ScriptReference/ShaderVariantCollection.html
+
+---
+
+"Hidden/Internal-DeferredShading"
+
+Shader shader = Shader.Find ("Hidden/Internal-Colored");
+mat = new Material (shader);
+mat.hideFlags = HideFlags.HideAndDontSave;
+
+// Set blend mode to invert destination colors.
+mat.SetInt ("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusDstColor);
+mat.SetInt ("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+// Turn off backface culling, depth writes, depth test.
+mat.SetInt ("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
+mat.SetInt ("_ZWrite", 0);
+mat.SetInt ("_ZTest", (int)UnityEngine.Rendering.CompareFunction.Always);
+
+https://community.unity.com/t5/Scripting/Recreating-world-position-from-depth-algorithm/td-p/1897833

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{78298EFD-43A4-4549-8A7E-6645D2878C1F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JuFramework</RootNamespace>
+    <AssemblyName>JuFramework_Unity</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\JuFramework_Unity.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>JuDelCo_JuFramework.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="JuFramework\App.cs" />
+    <Compile Include="JuFramework\Core.cs" />
+    <Compile Include="JuFramework\Debug\Debug.cs" />
+    <Compile Include="JuFramework\ECS\Camera.cs" />
+    <Compile Include="JuFramework\ECS\Camera2D.cs" />
+    <Compile Include="JuFramework\ECS\Camera3D.cs" />
+    <Compile Include="JuFramework\ECS\Transform2D.cs" />
+    <Compile Include="JuFramework\ECS\Transform3D.cs" />
+    <Compile Include="JuFramework\Graphics\Extensions\GraphicsExtension.cs" />
+    <Compile Include="JuFramework\Graphics\Graphics.cs" />
+    <Compile Include="JuFramework\Graphics\Material.cs" />
+    <Compile Include="JuFramework\Graphics\Mesh.cs" />
+    <Compile Include="JuFramework\Graphics\Models.cs" />
+    <Compile Include="JuFramework\Graphics\Screen.cs" />
+    <Compile Include="JuFramework\Graphics\Shader.cs" />
+    <Compile Include="JuFramework\Graphics\Shapes.cs" />
+    <Compile Include="JuFramework\Graphics\Text.cs" />
+    <Compile Include="JuFramework\Graphics\Texture.cs" />
+    <Compile Include="JuFramework\Input\Input.cs" />
+    <Compile Include="JuFramework\Input\InputAction.cs" />
+    <Compile Include="JuFramework\Input\InputDefines.cs" />
+    <Compile Include="JuFramework\Math\Extensions\MathExtension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\Matrix3Extension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\Matrix4Extension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\QuatExtension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\Vector2fExtension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\Vector2iExtension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\Vector3fExtension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\Vector3iExtension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\Vector4fExtension.cs" />
+    <Compile Include="JuFramework\Math\Extensions\Vector4iExtension.cs" />
+    <Compile Include="JuFramework\Math\Frustum.cs" />
+    <Compile Include="JuFramework\Math\Math.cs" />
+    <Compile Include="JuFramework\Math\Matrix3.cs" />
+    <Compile Include="JuFramework\Math\Matrix4.cs" />
+    <Compile Include="JuFramework\Math\Quat.cs" />
+    <Compile Include="JuFramework\Math\Vector2f.cs" />
+    <Compile Include="JuFramework\Math\Vector2i.cs" />
+    <Compile Include="JuFramework\Math\Vector3f.cs" />
+    <Compile Include="JuFramework\Math\Vector3i.cs" />
+    <Compile Include="JuFramework\Math\Vector4f.cs" />
+    <Compile Include="JuFramework\Math\Vector4i.cs" />
+    <Compile Include="JuFramework\Physics\Box.cs" />
+    <Compile Include="JuFramework\Physics\Extensions\FloatRectExtension.cs" />
+    <Compile Include="JuFramework\Physics\Extensions\IntRectExtension.cs" />
+    <Compile Include="JuFramework\Physics\FloatRect.cs" />
+    <Compile Include="JuFramework\Physics\IntRect.cs" />
+    <Compile Include="JuFramework\Physics\Physics2D.cs" />
+    <Compile Include="JuFramework\Physics\Physics3D.cs" />
+    <Compile Include="JuFramework\Physics\Ray.cs" />
+    <Compile Include="JuFramework\Physics\Sphere.cs" />
+    <Compile Include="JuFramework\Utils\Binary.cs" />
+    <Compile Include="JuFramework\Utils\Clock.cs" />
+    <Compile Include="JuFramework\Utils\Color.cs" />
+    <Compile Include="JuFramework\Utils\Color32.cs" />
+    <Compile Include="JuFramework\Utils\Extensions\Color32Extension.cs" />
+    <Compile Include="JuFramework\Utils\Extensions\ColorExtension.cs" />
+    <Compile Include="JuFramework\Utils\Random.cs" />
+    <Compile Include="JuFramework\Utils\ResourceLoader.cs" />
+    <Compile Include="JuFramework\Utils\StopWatch.cs" />
+    <Compile Include="JuFramework\Utils\Time.cs" />
+    <Compile Include="JuFramework\Utils\Tuple.cs" />
+    <Compile Include="JuFramework_Unity\Debug\UnityDebug.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\Extensions\UnityMeshExtension.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\Extensions\UnityShaderExtension.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\Extensions\UnityTextureExtension.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\UnityGraphics.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\UnityMaterial.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\UnityMesh.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\UnityScreen.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\UnityShader.cs" />
+    <Compile Include="JuFramework_Unity\Graphics\UnityTexture.cs" />
+    <Compile Include="JuFramework_Unity\Input\UnityInput.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityFloatRectExtension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityIntRectExtension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityMatrix3Extension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityMatrix4Extension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityQuatExtension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityVector2fExtension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityVector2iExtension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityVector3fExtension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityVector3iExtension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityVector4fExtension.cs" />
+    <Compile Include="JuFramework_Unity\Math\Extensions\UnityVector4iExtension.cs" />
+    <Compile Include="JuFramework_Unity\UnityBootstrap.cs" />
+    <Compile Include="JuFramework_Unity\Utils\Extensions\UnityBinaryExtension.cs" />
+    <Compile Include="JuFramework_Unity\Utils\Extensions\UnityColor32Extension.cs" />
+    <Compile Include="JuFramework_Unity\Utils\Extensions\UnityColorExtension.cs" />
+    <Compile Include="JuFramework_Unity\Utils\UnityResourceLoader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JuDelCo_JuFramework.pfx" />
+    <None Include="JuFramework_Unity\Graphics\Shaders\LinesColoredBlended.shader" />
+    <None Include="JuFramework_Unity\Graphics\Shaders\SpritesPixelSnapAlphaBlended.shader" />
+    <None Include="JuFramework_Unity\InputManager.asset" />
+    <None Include="JuFramework_Unity\Input\InputManager.asset" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
